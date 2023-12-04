@@ -238,10 +238,10 @@
     stream-browserify "^3.0.0"
     util "^0.12.4"
 
-"@cometh/connect-sdk-viem@1.1.0-dev.1":
-  version "1.1.0-dev.1"
-  resolved "https://registry.yarnpkg.com/@cometh/connect-sdk-viem/-/connect-sdk-viem-1.1.0-dev.1.tgz#9ccad825c3c292a753cba0d2d249758e6b22f261"
-  integrity sha512-iHb0lYvFvjV6R/vlAlo0eohpXAQxSo8FVVGXfvr34ZcPCpj4vCy9JQgNh4xv7oc2h6orqKcQqAksvF22J4iegA==
+"@cometh/connect-sdk-viem@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@cometh/connect-sdk-viem/-/connect-sdk-viem-1.1.0.tgz#c3586f9253670158731367ab8b8357f5e188cd1d"
+  integrity sha512-O7ZCejobD4jw2aDn0V4vtPpz95+aY//FPTOPeBVdGhz2sun9wdWSvZc1nctieLWg1Y7hGp0F8Bxuczg1rBZYug==
   dependencies:
     "@babel/traverse" "^7.23.4"
     "@cometh/connect-sdk" "^1.2.3"

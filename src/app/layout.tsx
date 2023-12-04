@@ -27,7 +27,12 @@ const { chains, publicClient, webSocketPublicClient } = configureChains(
 const connectors = connectorsForWallets([
   {
     groupName: "Recommended",
-    wallets: [rainbowkitComethConnect({ apiKey, chain: polygon })],
+    wallets: [
+      rainbowkitComethConnect({
+        apiKey,
+        chain: polygon,
+      }),
+    ],
   },
 ]);
 
