@@ -14,7 +14,6 @@ import { publicProvider } from "wagmi/providers/public";
 import { rainbowkitComethConnect } from "@cometh/connect-sdk-viem";
 
 const apiKey = process.env.NEXT_PUBLIC_COMETH_API_KEY!;
-const baseUrl = "http://127.0.0.1:8000/connect";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -28,7 +27,7 @@ const { chains, publicClient, webSocketPublicClient } = configureChains(
 const connectors = connectorsForWallets([
   {
     groupName: "Recommended",
-    wallets: [rainbowkitComethConnect({ apiKey, chain: polygon, baseUrl })],
+    wallets: [rainbowkitComethConnect({ apiKey, chain: polygon })],
   },
 ]);
 
