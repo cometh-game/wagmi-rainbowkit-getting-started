@@ -1,9 +1,11 @@
 import { Icons } from "@/app/lib/ui/components";
+import { comethConnectConnector } from "@cometh/connect-sdk-viem";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { useAccount } from "wagmi";
+import { useAccount, useConnect } from "wagmi";
 
 function ConnectWallet(): JSX.Element {
-  const { isConnecting } = useAccount();
+  const { isConnecting, isConnected, address } = useAccount();
+  const { connect } = useConnect();
 
   return (
     <>
@@ -13,7 +15,21 @@ function ConnectWallet(): JSX.Element {
           {"Getting wallet..."}
         </>
       ) : (
-        <ConnectButton />
+        <>
+          {/* <button
+            onClick={() => {
+              connect({
+                connector: comethConnectConnector({
+                  apiKey: process.env.NEXT_PUBLIC_COMETH_API_KEY!,
+                }),
+              });
+            }}
+          >
+            {isConnected ? address : "Connect Wallet"}
+          </button> */}
+          {/* <ConnectButton /> */}
+          <w3m-button />
+        </>
       )}
     </>
   );
