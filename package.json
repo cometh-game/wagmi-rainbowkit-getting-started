@@ -11,7 +11,7 @@
   "dependencies": {
     "@cometh/connect-sdk-viem": "file:.yalc/@cometh/connect-sdk-viem",
     "@radix-ui/react-icons": "^1.3.0",
-    "@rainbow-me/rainbowkit": "2",
+    "@rainbow-me/rainbowkit": "file:.yalc/@rainbow-me/rainbowkit",
     "@tanstack/react-query": "^5.25.0",
     "@types/node": "20.3.2",
     "@types/react": "18.2.14",
@@ -20,6 +20,7 @@
     "autoprefixer": "10.4.14",
     "class-variance-authority": "^0.6.1",
     "clsx": "^1.2.1",
+    "connectkit": "^1.7.2",
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.7",
     "next": "13.4.7",
@@ -31,7 +32,7 @@
     "tailwindcss": "3.3.2",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "5.1.6",
-    "viem": "2",
-    "wagmi": "2"
+    "viem": "ˆ2",
+    "wagmi": "ˆ2"
   }
 }

@@ -1,15 +1,21 @@
 "use client";
 
 import { Icons } from "../lib/ui/components";
-import React from "react";
+import React, { useEffect } from "react";
 import Alert from "../lib/ui/components/Alert";
 import { PlusIcon } from "@radix-ui/react-icons";
 import countContractAbi from "../../app/contract/counterABI.json";
-import { useAccount, useReadContract, useWriteContract } from "wagmi";
+import {
+  useAccount,
+  useClient,
+  useReadContract,
+  useWriteContract,
+} from "wagmi";
 
 const COUNTER_CONTRACT_ADDRESS = "0x84ADD3fa2c2463C8cF2C95aD70e4b5F602332160";
 
 export function Transaction() {
+  const client = useClient();
   const { address, connector } = useAccount();
   const { data: balance } = useReadContract({
     address: COUNTER_CONTRACT_ADDRESS,
@@ -24,6 +30,10 @@ export function Transaction() {
     isPending,
     writeContract,
   } = useWriteContract();
+
+  useEffect(() => {
+    console.log("client", client);
+  }, [client]);
 
   function TransactionButton() {
     return (

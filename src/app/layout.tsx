@@ -13,15 +13,13 @@ import {
   WagmiProvider,
 } from "wagmi";
 import { polygon } from "viem/chains";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { getComethConnectWallet } from "@cometh/connect-sdk-viem";
 import {
   connectorsForWallets,
-  getDefaultConfig,
+  getDefaultWallets,
   RainbowKitProvider,
 } from "@rainbow-me/rainbowkit";
-import { phantomWallet } from "@rainbow-me/rainbowkit/wallets";
-import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
-import { comethConnectWallet } from "@cometh/connect-sdk-viem";
-import { createWeb3Modal, defaultWagmiConfig } from "@web3modal/wagmi";
 
 const apiKey = process.env.NEXT_PUBLIC_COMETH_API_KEY!;
 
@@ -29,12 +27,15 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
+const comethConnect = getComethConnectWallet({ apiKey });
+
 const connectors = connectorsForWallets(
   [
     {
-      groupName: "Cometh",
-      wallets: [() => comethConnectWallet({ apiKey })],
+      groupName: "Recommended",
+      wallets: [comethConnect],
     },
+    ...getDefaultWallets().wallets,
   ],
   {
     appName: "Cometh",
@@ -48,32 +49,12 @@ const wagmiConfig = createConfig({
   transports: {
     [polygon.id]: http(),
   },
-  ssr: true,
+  storage: createStorage({
+    storage: cookieStorage,
+  }),
 });
-
-// export const wagmiConfig = getDefaultConfig({
-//   wallets: [
-//     {
-//       groupName: "Cometh",
-//       wallets: [() => comethConnectWallet({ apiKey })],
-//     },
-//   ],
-//   appName: "Cometh",
-//   projectId: "00ff1e306abeeb8d646b4aa297fff6d5",
-//   chains: [polygon],
-//   ssr: true,
-// });
 
 const queryClient = new QueryClient();
-
-createWeb3Modal({
-  wagmiConfig,
-  projectId: "00ff1e306abeeb8d646b4aa297fff6d5",
-  connectorImages: {
-    "cometh-connect":
-      "https://pbs.twimg.com/profile_images/1679433363818442753/E2kNVLBe_400x400.jpg",
-  },
-});
 
 export default function RootLayout({
   children,
@@ -85,7 +66,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <WagmiProvider config={wagmiConfig}>
           <QueryClientProvider client={queryClient}>
-            <RainbowKitProvider>{children}</RainbowKitProvider>
+            <RainbowKitProvider modalSize="compact">
+              {children}
+            </RainbowKitProvider>
           </QueryClientProvider>
         </WagmiProvider>
       </body>
