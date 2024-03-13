@@ -5,13 +5,7 @@ import "@rainbow-me/rainbowkit/styles.css";
 import { Inter } from "next/font/google";
 import "./lib/ui/globals.css";
 
-import {
-  cookieStorage,
-  createConfig,
-  createStorage,
-  http,
-  WagmiProvider,
-} from "wagmi";
+import { createConfig, http, WagmiProvider } from "wagmi";
 import { polygon } from "viem/chains";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { getComethConnectWallet } from "@cometh/connect-sdk-viem";
@@ -28,7 +22,6 @@ const inter = Inter({
 });
 
 const comethConnect = getComethConnectWallet({ apiKey });
-
 const connectors = connectorsForWallets(
   [
     {
@@ -49,9 +42,6 @@ const wagmiConfig = createConfig({
   transports: {
     [polygon.id]: http(),
   },
-  storage: createStorage({
-    storage: cookieStorage,
-  }),
 });
 
 const queryClient = new QueryClient();

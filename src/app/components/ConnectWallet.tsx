@@ -2,7 +2,7 @@
 
 import { Icons } from "@/app/lib/ui/components";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { useAccount, useConnectors } from "wagmi";
+import { useAccount } from "wagmi";
 
 function ConnectWallet(): JSX.Element {
   const { isConnecting } = useAccount();

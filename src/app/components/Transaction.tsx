@@ -15,8 +15,7 @@ import {
 const COUNTER_CONTRACT_ADDRESS = "0x84ADD3fa2c2463C8cF2C95aD70e4b5F602332160";
 
 export function Transaction() {
-  const client = useClient();
-  const { address, connector } = useAccount();
+  const { address } = useAccount();
   const { data: balance } = useReadContract({
     address: COUNTER_CONTRACT_ADDRESS,
     abi: countContractAbi,
@@ -31,10 +30,6 @@ export function Transaction() {
     writeContract,
   } = useWriteContract();
 
-  useEffect(() => {
-    console.log("client", client);
-  }, [client]);
-
   function TransactionButton() {
     return (
       <>
@@ -45,7 +40,6 @@ export function Transaction() {
               address: COUNTER_CONTRACT_ADDRESS,
               abi: countContractAbi,
               functionName: "count",
-              connector: connector,
             });
           }}
         >
